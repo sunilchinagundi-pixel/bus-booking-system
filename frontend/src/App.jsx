@@ -13,7 +13,7 @@ function App() {
   const [error, setError] = useState(null);
   const [resultsRef, setResultsRef] = useState(null);
 
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const API_URL = process.env.REACT_APP_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:8000' : window.location.origin);
 
   const handleSearch = async ({ source, destination, date }) => {
     setLoading(true);
