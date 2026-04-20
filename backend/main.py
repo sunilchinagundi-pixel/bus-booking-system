@@ -428,10 +428,10 @@ def populate_sample_data(db: Session):
             existing.rating = sample_bus.rating
     db.commit()
 
-# Root endpoint
-@app.get("/")
-def read_root():
-    return {"message": "Bus Booking API", "version": "1.0.0"}
+# Root endpoint - commented out to let static files serve React app
+# @app.get("/")
+# def read_root():
+#     return {"message": "Bus Booking API", "version": "1.0.0"}
 
 # Search buses
 @app.post("/api/buses/search")
