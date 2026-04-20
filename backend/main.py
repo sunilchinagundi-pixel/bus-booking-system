@@ -18,9 +18,6 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Bus Booking API", version="1.0.0")
 
-# Mount static files for React app
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
-
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,

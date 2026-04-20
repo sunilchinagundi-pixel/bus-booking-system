@@ -26,8 +26,11 @@ COPY backend/ ./backend/
 # Copy built frontend to backend static directory
 RUN mkdir -p backend/static && cp -r frontend/build/* backend/static/
 
+# Set working directory to backend
+WORKDIR /app/backend
+
 # Expose the app port and run the backend server
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 # Expose the app port and run the backend server
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
