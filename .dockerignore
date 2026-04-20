@@ -14,4 +14,5 @@ __pycache__
 .gitignore
 docker-compose.yml
 README.md
-frontend
+frontend/node_modules
+frontend/build

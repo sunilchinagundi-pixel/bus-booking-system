@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from datetime import datetime, timedelta
 import models
@@ -16,6 +17,9 @@ openai.api_key = os.getenv("OPENAI_API_KEY", "your-api-key-here")  # Replace wit
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Bus Booking API", version="1.0.0")
+
+# Mount static files for React app
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 # Add CORS middleware
 app.add_middleware(
@@ -585,6 +589,9 @@ def cancel_booking(booking_id: int, db: Session = Depends(get_db)):
     db.commit()
     
     return booking
+
+# Mount static files for React app (after all API routes)
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 if __name__ == "__main__":
     import uvicorn
